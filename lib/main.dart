@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +20,15 @@ class MyApp extends StatelessWidget {
 /// 홈 페이지
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  // Number API 호출하기
+  Future<String> getNumberTrivia() async {
+    // get 메소드로 URL 호출
+    Response result = await Dio().get('http://numbersapi.com/random/trivia');
+    String trivia = result.data;
+    print(trivia);
+    return trivia;
+  }
 
   @override
   Widget build(BuildContext context) {
